@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <center>
+        <h2 style="margin-top: 200px;">Bienvenue {{ app.user.username }}</h2>
+        
+        <h3>{{ 'profile.show.username'|trans({}, 'FOSUserBundle') }}: {{ app.user.username }}</h3>
+        <h3>{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}: {{ app.user.email }}</h3>
+        <a class="btn btn-danger" href="{{ path('fos_user_security_logout') }}">
+            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+        </a>
+    </center>
+
+    {% for type, messages in app.session.flashBag.all %}
+            {% for message in messages %}
+                <div class="{{ type }}">
+                    {{ message|trans({}, 'FOSUserBundle') }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    
+                
+{% endblock %}
+

@@ -1,0 +1,67 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+{% if error %}
+    <div>{{ error|trans({}, 'FOSUserBundle') }}</div>
+{% endif %}
+
+<div class="container">
+			<div class="row main">
+				<div class="panel-heading">
+	               <div class="panel-title text-center">
+	               		<h1 class="title">MIT</h1>
+	               		<hr />
+	               	</div>
+	            </div> 
+				<center>
+					<div class="main-login main-center">
+					<form action="{{ path("fos_user_security_check") }}" method="post">
+						<input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+						
+
+						<div class="form-group">
+							<label for="username" class="cols-sm-2 control-label">Username</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class=""><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="password" class="cols-sm-2 control-label">Password</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class=""><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+									<input type="password" id="password" name="_password" required="required" />
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group ">
+							<input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+    						<label for="remember_me">{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</label>
+						</div>
+						<div class="login-register">
+				            <input type="submit" id="_submit" name="_submit" class="btn btn-success" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
+				         </div>
+				         
+					</form>
+					<form action="{{ path("fos_user_registration_register") }}" method="get">
+						<div class="form-group" style="width: 100px; margin-top: 20px;">
+							<input style="float: left; margin-right: 28px;" type="submit" value="Register" class="btn btn-primary" />
+						</div>
+					</form>
+					
+					<form action="{{ path("fos_user_resetting_request") }}" method="get">
+						<div class="form-group" style=" margin-top: 20px; ">
+							<input style="float: left;" type="submit" value="Reset password" class="btn btn-danger" />
+						</div>
+					</form>
+				</div>
+			</div>
+				</center>
+		</div>
+
+{% endblock fos_user_content %}
